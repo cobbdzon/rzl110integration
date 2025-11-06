@@ -7,6 +7,8 @@ var currentCharacter: CharacterController;
 var currentScene: Node2D;
 var currentCamera: Camera2D;
 
+var SCENE_CANMOVE_DELAY: float = 0.5;
+
 # scene management
 var nextScene: String = "outside";
 var wishTransitionScene: bool = false;
@@ -22,10 +24,11 @@ func change_scene_to(scene: String):
 		#characterSnapshots[character.name] = character.data;
 	
 	if currentCharacter:
+		currentCharacter.data.lastScene = currentScene.name;
 		currentCharacter.get_parent().remove_child(currentCharacter);
 	
 	# Change scene
-	get_tree().change_scene_to_file("res://" + scene + ".tscn");
+	get_tree().change_scene_to_file("res://scenes/" + scene + ".tscn");
 	await get_tree().process_frame;
 	
 	# load non-characters
@@ -44,7 +47,11 @@ func change_scene_to(scene: String):
 	currentCamera = currentScene.get_node("%Camera")
 	if currentCharacter:
 		currentScene.add_child(currentCharacter);
-		currentCharacter.global_position = characterSnapshots[currentCharacter.name].scenePosition;
+		#currentCharacter.global_position = characterSnapshots[currentCharacter.name].scenePosition;
+		currentCharacter.data.canMove = false;
+		get_tree().create_timer(SCENE_CANMOVE_DELAY).timeout.connect(func ():
+				currentCharacter.data.canMove = true;
+		)
 		currentCharacter.data.transitioningScene = false;
 
 func _process(delta: float) -> void:

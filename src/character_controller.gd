@@ -7,12 +7,12 @@ var chosenAnimDir = "front";
 var chosenAnimState = "idle";
 
 func update_camera(delta: float) -> void:
-	if data.isPlayer and not data.transitioningScene:
+	if data.isPlayer and not PlayerController.wishTransitionScene:
 		PlayerController.currentCamera.position = self.position;
 
 func update_anims(delta: float) -> void:
 	var currentVelocityLength = velocity.length();
-	if currentVelocityLength > 0:
+	if data.canMove and currentVelocityLength > 0:
 		chosenAnimState = "walk"
 		if velocity.y > 0:
 			chosenAnimDir = "front";
@@ -32,7 +32,8 @@ func update_anims(delta: float) -> void:
 
 func player_movement() -> void:
 	velocity = data.wishDirection.normalized() * (data.CHAR_SPRINT_SPEED if data.wishSprint else data.CHAR_SPEED);
-	move_and_slide();
+	if data.canMove:
+		move_and_slide();
 
 func _physics_process(delta: float) -> void:
 	data.wishSprint = Input.is_action_pressed("Sprint");

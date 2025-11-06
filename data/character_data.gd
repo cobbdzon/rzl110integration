@@ -2,6 +2,7 @@ extends Resource
 class_name CharacterData
 
 @export var isPlayer: bool = false;
+@export var canMove: bool = true;
 @export var wishSprint: bool = false;
 @export var wishDirection: Vector2 = Vector2.ZERO;
 @export var CHAR_SPEED: int = 1;

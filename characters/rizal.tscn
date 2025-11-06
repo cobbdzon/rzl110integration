@@ -1,6 +1,6 @@
 [gd_scene load_steps=42 format=3 uid="uid://x1m0v0828gxn"]
 
-[ext_resource type="Script" uid="uid://dotvf7yj3ylxp" path="res://rizal.gd" id="1_qcy5q"]
+[ext_resource type="Script" uid="uid://dotvf7yj3ylxp" path="res://src/rizal.gd" id="1_qcy5q"]
 [ext_resource type="Resource" uid="uid://cn3e0iqcijn3h" path="res://data/rizal.tres" id="2_tmv4m"]
 [ext_resource type="Texture2D" uid="uid://dh04cjtowcw45" path="res://assets/sprites/characters/player.png" id="3_1lq0v"]
 
@@ -292,7 +292,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Rizal" type="CharacterBody2D"]
+[node name="rizal" type="CharacterBody2D"]
 y_sort_enabled = true
 script = ExtResource("1_qcy5q")
 data = ExtResource("2_tmv4m")
@@ -304,6 +304,6 @@ shape = SubResource("CircleShape2D_epypp")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_7mj2a")
-animation = &"back_idle"
+animation = &"front_idle"
 autoplay = "front_idle"
 offset = Vector2(0, -16)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cg3lel05mx6gt"
-path="res://.godot/imported/dust_particles_01.png-d02d3d47d8387839e793219b2baee183.ctex"
+uid="uid://d03cou5lv58k5"
+path="res://.godot/imported/FreePixel.png-e7128add688952fb7bc36a65caba338a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/particles/dust_particles_01.png"
-dest_files=["res://.godot/imported/dust_particles_01.png-d02d3d47d8387839e793219b2baee183.ctex"]
+source_file="res://assets/sprites/pixel_crawler/Environment/Props/Static/FreePixel.png"
+dest_files=["res://.godot/imported/FreePixel.png-e7128add688952fb7bc36a65caba338a.ctex"]
 
 [params]
 

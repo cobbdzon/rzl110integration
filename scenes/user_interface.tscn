@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://beh111myjqse3"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og1tf"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="Theme" id="Theme_kxhmu"]
+Panel/styles/panel = SubResource("StyleBoxFlat_og1tf")
+
+[node name="user_interface" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = SubResource("Theme_kxhmu")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
