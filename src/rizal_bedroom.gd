@@ -8,7 +8,7 @@ func enter_transition_point(body: Node2D):
 		PlayerController.wishTransitionScene = true;
 
 func spawn_if_not_exist(charName: String, pos: Vector2):
-	if not has_node(charName) == null:
+	if not has_node(charName):
 		PlayerController.spawn_character(charName, pos);
 
 func _scene_ready():
