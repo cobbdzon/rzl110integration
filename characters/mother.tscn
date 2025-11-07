@@ -1,12 +1,14 @@
-[gd_scene load_steps=46 format=3 uid="uid://c6nveg4vm5g48"]
+[gd_scene load_steps=47 format=3 uid="uid://c6nveg4vm5g48"]
 
-[ext_resource type="Script" uid="uid://dotvf7yj3ylxp" path="res://src/rizal.gd" id="1_l566k"]
-[ext_resource type="Resource" uid="uid://cn3e0iqcijn3h" path="res://data/rizal.tres" id="2_mws3a"]
+[ext_resource type="Script" uid="uid://vkq8d04qqa30" path="res://src/mother.gd" id="1_1w87c"]
+[ext_resource type="Resource" uid="uid://2feghk5pls6x" path="res://data/mother.tres" id="2_l566k"]
 [ext_resource type="Texture2D" uid="uid://bqku67i3opygf" path="res://assets/sprites/characters/mother.png" id="3_l566k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l566k"]
 radius = 7.0
 height = 22.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l566k"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mws3a"]
 atlas = ExtResource("3_l566k")
@@ -333,16 +335,23 @@ animations = [{
 
 [node name="mother" type="CharacterBody2D"]
 y_sort_enabled = true
-script = ExtResource("1_l566k")
-data = ExtResource("2_mws3a")
+collision_mask = 5
+script = ExtResource("1_1w87c")
+data = ExtResource("2_l566k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -10)
 shape = SubResource("CapsuleShape2D_l566k")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -6)
+shape = SubResource("CircleShape2D_l566k")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_7mj2a")
-animation = &"front_idle"
+animation = &"front_walk"
 autoplay = "front_idle"
 offset = Vector2(0, -16)

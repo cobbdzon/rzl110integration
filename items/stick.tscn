@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://d028qpwqyc6ka"]
+
+[ext_resource type="Script" uid="uid://l6sbtf5da8sf" path="res://src/stick.gd" id="1_ugobb"]
+[ext_resource type="Texture2D" uid="uid://dd208ay1pljva" path="res://assets/sprites/pixel_crawler/Environment/Props/Static/Vegetation.png" id="1_vfs4v"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_udpx5"]
+size = Vector2(11, 8)
+
+[node name="stick" type="RigidBody2D"]
+z_index = -1
+collision_layer = 2
+collision_mask = 4
+gravity_scale = 0.0
+script = ExtResource("1_ugobb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_udpx5")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_vfs4v")
+region_enabled = true
+region_rect = Rect2(304, 16, 16, 16)

@@ -294,6 +294,7 @@ animations = [{
 
 [node name="rizal" type="CharacterBody2D"]
 y_sort_enabled = true
+collision_mask = 4
 script = ExtResource("1_qcy5q")
 data = ExtResource("2_tmv4m")
 

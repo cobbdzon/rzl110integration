@@ -1,10 +1,22 @@
-[gd_scene load_steps=4 format=4 uid="uid://b6n8045pr17an"]
+[gd_scene load_steps=8 format=4 uid="uid://b6n8045pr17an"]
 
 [ext_resource type="Script" uid="uid://gdjdwrtxavd1" path="res://src/rizal_bedroom.gd" id="1_nbajk"]
 [ext_resource type="TileSet" uid="uid://b11am38ra65b4" path="res://assets/pixel_crawler.tres" id="2_af6ag"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6pddp"]
 size = Vector2(20, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nbajk"]
+size = Vector2(5, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_af6ag"]
+size = Vector2(159, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eynes"]
+size = Vector2(93, 53.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k14bi"]
+size = Vector2(46, 54)
 
 [node name="rizal_bedroom" type="Node2D"]
 script = ExtResource("1_nbajk")
@@ -48,3 +60,27 @@ position = Vector2(40, -10)
 [node name="Exit" type="CollisionShape2D" parent="HouseExit"]
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_6pddp")
+
+[node name="House" type="StaticBody2D" parent="."]
+collision_layer = 4
+collision_mask = 3
+
+[node name="House4" type="CollisionShape2D" parent="House"]
+position = Vector2(93, 61)
+shape = SubResource("RectangleShape2D_nbajk")
+
+[node name="House3" type="CollisionShape2D" parent="House"]
+position = Vector2(-60.5, 61)
+shape = SubResource("RectangleShape2D_nbajk")
+
+[node name="House5" type="CollisionShape2D" parent="House"]
+position = Vector2(16.5, 133)
+shape = SubResource("RectangleShape2D_af6ag")
+
+[node name="House1" type="CollisionShape2D" parent="House"]
+position = Vector2(-16.5, -26.75)
+shape = SubResource("RectangleShape2D_eynes")
+
+[node name="House2" type="CollisionShape2D" parent="House"]
+position = Vector2(73, -27)
+shape = SubResource("RectangleShape2D_k14bi")

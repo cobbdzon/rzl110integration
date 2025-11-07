@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://boupvpg07tc6t"]
+[gd_scene load_steps=40 format=3 uid="uid://boupvpg07tc6t"]
 
 [ext_resource type="Script" uid="uid://ck8pfean6yv5c" path="res://src/usman.gd" id="1_0d5hc"]
 [ext_resource type="Resource" uid="uid://bt2jmy7axl8mt" path="res://data/usman.tres" id="2_lkw3w"]
@@ -6,6 +6,8 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_d21ai"]
 radius = 6.0827627
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0d5hc"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7mj2a"]
 atlas = ExtResource("3_svim1")
@@ -300,6 +302,7 @@ animations = [{
 }]
 
 [node name="usman" type="CharacterBody2D"]
+collision_mask = 4
 script = ExtResource("1_0d5hc")
 data = ExtResource("2_lkw3w")
 
@@ -307,10 +310,15 @@ data = ExtResource("2_lkw3w")
 position = Vector2(0.5, -6)
 shape = SubResource("CircleShape2D_d21ai")
 
+[node name="Area2D" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -6)
+shape = SubResource("CircleShape2D_0d5hc")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_lyuya")
-animation = &"side_run"
+animation = &"front_idle"
 autoplay = "front_idle"
-frame = 3
-frame_progress = 1.0
 offset = Vector2(0, -14)

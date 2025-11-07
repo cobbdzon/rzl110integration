@@ -1,9 +1,11 @@
 [gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://cn3e0iqcijn3h"]
 
-[ext_resource type="Script" uid="uid://bf8eb77wsj6v7" path="res://data/character_data.gd" id="1_y7xk2"]
+[ext_resource type="Script" uid="uid://bf8eb77wsj6v7" path="res://src/character_data.gd" id="1_y7xk2"]
 
 [resource]
 script = ExtResource("1_y7xk2")
-CHAR_SPEED = 100
-CHAR_SPRINT_SPEED = 200
+CHAR_ACCEL = 1000
+CHAR_SPEED = 50
+CHAR_SPRINT_SPEED = 100
+hasStick = true
 metadata/_custom_type_script = "uid://bf8eb77wsj6v7"

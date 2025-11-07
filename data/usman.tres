@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="CharacterData" load_steps=2 format=3 uid="uid://bt2jmy7axl8mt"]
 
-[ext_resource type="Script" uid="uid://bf8eb77wsj6v7" path="res://data/character_data.gd" id="1_lay5a"]
+[ext_resource type="Script" uid="uid://bf8eb77wsj6v7" path="res://src/character_data.gd" id="1_lay5a"]
 
 [resource]
 script = ExtResource("1_lay5a")
+CHAR_ACCEL = 500
 CHAR_SPEED = 60
 CHAR_SPRINT_SPEED = 120
-currentScene = "outside"
 metadata/_custom_type_script = "uid://bf8eb77wsj6v7"
