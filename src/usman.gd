@@ -12,13 +12,15 @@ func _on_body_entered(body: Node):
 		data.hasStick = true;
 		body.queue_free()
 	elif body.name == "rizal":
-		var rizal: CharacterController = get_tree().current_scene.get_node("rizal");
-		PlayerController.change_character(rizal);
-		rizal.data.canMove = false;
-		get_tree().create_timer(0.5).timeout.connect(func():
-			rizal.data.canMove = true;
-			rizal.data.hasStick = true;
-		)
+		if data.hasStick:
+			var rizal: CharacterController = get_tree().current_scene.get_node("rizal");
+			PlayerController.change_character(rizal);
+			rizal.data.canMove = false;
+			get_tree().create_timer(0.5).timeout.connect(func():
+				rizal.data.canMove = true;
+				data.hasStick = false;
+				rizal.data.hasStick = true;
+			)
 
 func _ready() -> void:
 	detect_area.body_entered.connect(_on_body_entered);
