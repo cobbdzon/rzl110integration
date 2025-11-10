@@ -1,11 +1,13 @@
 extends Node;
 
+const STARTING_SCENE: String = "rizal_bedroom";
+
 signal scene_changed(new_scene: Node2D);
 
 @export var starter_character_name: String = "rizal";
 
-@onready var currentScene: Node2D = get_tree().current_scene;
-@onready var user_interface: Control = currentScene.get_node("/root/UserInterface").get_node("user_interface");
+var currentScene: Node2D;
+var user_interface: Control;
 
 var currentCharacter: CharacterController;
 var currentCamera: Camera2D;
@@ -110,7 +112,10 @@ func _process(delta: float) -> void:
 		wishTransitionScene = false;
 		change_scene_to(nextScene);
 
-func _ready() -> void:
+func _start_game() -> void:
+	currentScene = get_tree().current_scene;
+	user_interface = currentScene.get_node("/root/UserInterface").get_node("user_interface");
+	
 	spawn_starter_character();
 	currentCamera = currentScene.get_node("%Camera");
 	currentCamera.position = currentCharacter.position;

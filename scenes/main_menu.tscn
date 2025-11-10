@@ -1,0 +1,174 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctfw4pq3xydcv"]
+
+[ext_resource type="Script" uid="uid://caqvf758v4dhk" path="res://scenes/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="FontFile" uid="uid://d2pmkspj3wbdd" path="res://assets/fonts/GrapeSoda.ttf" id="1_l6cm7"]
+[ext_resource type="Theme" uid="uid://dfd230ipt7aub" path="res://assets/themes/button.tres" id="2_bqqt6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekxnf"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="main_menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ekxnf")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -197.0
+offset_top = 17.0
+offset_right = 197.0
+offset_bottom = 163.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="start" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_bqqt6")
+text = "Start game
+"
+
+[node name="credits" type="Button" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_bqqt6")
+text = "Credits
+"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -328.0
+offset_top = -248.0
+offset_right = 328.0
+offset_bottom = -22.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 128
+text = "RIZAL GAME"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="credits_panel" type="Panel" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ekxnf")
+
+[node name="Label" type="Label" parent="credits_panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -328.0
+offset_right = 328.0
+offset_bottom = 85.0
+grow_horizontal = 2
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 8
+theme_override_constants/shadow_offset_y = 8
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 128
+text = "CREDITS"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="credits_list" type="VBoxContainer" parent="credits_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -238.0
+offset_top = -185.0
+offset_right = 238.0
+offset_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/separation = 8
+
+[node name="title" type="Label" parent="credits_panel/credits_list"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 64
+text = "Game Development"
+horizontal_alignment = 1
+
+[node name="subtitle" type="Label" parent="credits_panel/credits_list"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 32
+text = "Dizon, Clark Jacob"
+horizontal_alignment = 1
+
+[node name="title2" type="Label" parent="credits_panel/credits_list"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 64
+text = "Concept Paper and Storyboard"
+horizontal_alignment = 1
+
+[node name="subtitle2" type="Label" parent="credits_panel/credits_list"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l6cm7")
+theme_override_font_sizes/font_size = 32
+text = "Doncillo, Cylen Nicole
+Dumlao, Ezrih Miles
+Duran, Roxella Jaimaele
+Geraldo, Luther David
+Guiyab, Jeanne Clio
+Javier, Cesar John
+Velasquez, JR"
+horizontal_alignment = 1
+
+[node name="credits_back" type="Button" parent="credits_panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -129.0
+offset_top = -77.0
+offset_right = 129.0
+offset_bottom = -29.0
+grow_horizontal = 2
+grow_vertical = 0
+size_flags_vertical = 3
+theme = ExtResource("2_bqqt6")
+text = "Back
+"
+
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="credits_panel/credits_back" to="." method="_on_credits_back_pressed"]

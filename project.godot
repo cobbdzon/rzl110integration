@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="rzl110integration"
-run/main_scene="uid://b6n8045pr17an"
+run/main_scene="uid://ctfw4pq3xydcv"
 config/features=PackedStringArray("4.5", "Forward Plus")
 config/icon="res://icon.svg"
 
