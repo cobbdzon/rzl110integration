@@ -23,6 +23,7 @@ func _on_body_entered(body: Node):
 			)
 
 func _ready() -> void:
+	diagonalConstant = 1;
 	detect_area.body_entered.connect(_on_body_entered);
 
 func _physics_process(delta: float) -> void:

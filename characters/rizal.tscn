@@ -293,7 +293,6 @@ animations = [{
 }]
 
 [node name="rizal" type="CharacterBody2D"]
-y_sort_enabled = true
 collision_mask = 4
 script = ExtResource("1_qcy5q")
 data = ExtResource("2_tmv4m")
@@ -303,7 +302,6 @@ position = Vector2(0.5, -3)
 shape = SubResource("CircleShape2D_epypp")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_7mj2a")
 animation = &"front_idle"
 autoplay = "front_idle"

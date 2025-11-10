@@ -15,6 +15,9 @@ func throw_stick():
 	
 	PlayerController.change_character(currentScene.get_node("usman"));
 
+func _ready() -> void:
+	diagonalConstant = 1;
+
 func _physics_process(delta: float) -> void:
 	if data.isPlayer:
 		data.wishDirection = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down");

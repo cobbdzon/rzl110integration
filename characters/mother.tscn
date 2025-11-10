@@ -4,9 +4,8 @@
 [ext_resource type="Resource" uid="uid://2feghk5pls6x" path="res://data/mother.tres" id="2_l566k"]
 [ext_resource type="Texture2D" uid="uid://bqku67i3opygf" path="res://assets/sprites/characters/mother.png" id="3_l566k"]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_l566k"]
-radius = 7.0
-height = 22.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_mws3a"]
+radius = 6.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l566k"]
 
@@ -334,24 +333,29 @@ animations = [{
 }]
 
 [node name="mother" type="CharacterBody2D"]
-y_sort_enabled = true
-collision_mask = 5
+collision_mask = 4
 script = ExtResource("1_1w87c")
 data = ExtResource("2_l566k")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -10)
-shape = SubResource("CapsuleShape2D_l566k")
+position = Vector2(0, -4)
+shape = SubResource("CircleShape2D_mws3a")
 
 [node name="Area2D" type="Area2D" parent="."]
-collision_mask = 3
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0.5, -6)
+position = Vector2(0, -4)
 shape = SubResource("CircleShape2D_l566k")
+
+[node name="RayCast2D" type="RayCast2D" parent="Area2D"]
+enabled = false
+target_position = Vector2(0, 10)
+collision_mask = 4
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_7mj2a")
 animation = &"front_walk"
 autoplay = "front_idle"
+frame_progress = 0.17864808
 offset = Vector2(0, -16)

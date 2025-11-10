@@ -1,20 +1,20 @@
 extends Node;
 
+const SCENE_CANMOVE_DELAY: float = 1;
 const STARTING_SCENE: String = "rizal_bedroom";
 
 signal scene_changed(new_scene: Node2D);
 
 @export var starter_character_name: String = "rizal";
 
+var gameStarted: bool = false;
+
 var currentScene: Node2D;
 var user_interface: Control;
-
 var currentCharacter: CharacterController;
 var currentCamera: Camera2D;
 
 var transitioning: bool = false;
-
-var SCENE_CANMOVE_DELAY: float = 1;
 
 # scene management
 var nextScene: String = "outside";
@@ -113,6 +113,10 @@ func _process(delta: float) -> void:
 		change_scene_to(nextScene);
 
 func _start_game() -> void:
+	if gameStarted:
+		return
+	gameStarted = true
+	
 	currentScene = get_tree().current_scene;
 	user_interface = currentScene.get_node("/root/UserInterface").get_node("user_interface");
 	
