@@ -47,6 +47,7 @@ grow_vertical = 2
 mouse_filter = 2
 
 [node name="dialog_panel" type="Panel" parent="user_interface"]
+visible = false
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
@@ -107,6 +108,180 @@ theme_override_font_sizes/font_size = 32
 text = " Next "
 
 [node name="close" type="Button" parent="user_interface/dialog_panel/dialog_box/options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_xsrv6")
+text = " Close "
+
+[node name="quiz_panel" type="Panel" parent="user_interface"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -328.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jbsfc")
+
+[node name="quiz_box" type="VBoxContainer" parent="user_interface/quiz_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -551.0
+offset_top = -139.0
+offset_right = 551.0
+offset_bottom = 139.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="title" type="Label" parent="user_interface/quiz_panel/quiz_box"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l2bgj")
+theme_override_font_sizes/font_size = 32
+text = "Level #1 Quiz"
+
+[node name="quiz_bg" type="Panel" parent="user_interface/quiz_panel/quiz_box"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lmgon")
+
+[node name="question" type="Label" parent="user_interface/quiz_panel/quiz_box/quiz_bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_l2bgj")
+theme_override_font_sizes/font_size = 32
+text = "What lesson did Teodora want Jose to learn when she asked him to play with Usman?"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="answer" type="Label" parent="user_interface/quiz_panel/quiz_box/quiz_bg"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_l2bgj")
+theme_override_font_sizes/font_size = 32
+text = "Correct Answer: C. Teodora used simple moments to teach moral lessons."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="quiz_options" type="GridContainer" parent="user_interface/quiz_panel/quiz_box"]
+layout_mode = 2
+columns = 2
+
+[node name="A" type="Button" parent="user_interface/quiz_panel/quiz_box/quiz_options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_y1h3b")
+theme_override_font_sizes/font_size = 32
+text = "A. To take care of animals"
+
+[node name="B" type="Button" parent="user_interface/quiz_panel/quiz_box/quiz_options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_y1h3b")
+theme_override_font_sizes/font_size = 32
+text = "B. To always obey his parents"
+
+[node name="C" type="Button" parent="user_interface/quiz_panel/quiz_box/quiz_options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_y1h3b")
+theme_override_font_sizes/font_size = 32
+text = "C. To value patience and determination"
+
+[node name="D" type="Button" parent="user_interface/quiz_panel/quiz_box/quiz_options"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = ExtResource("2_y1h3b")
+theme_override_font_sizes/font_size = 32
+text = "D. To rest instead of studying"
+
+[node name="options" type="HBoxContainer" parent="user_interface/quiz_panel/quiz_box"]
+layout_mode = 2
+theme = ExtResource("2_y1h3b")
+alignment = 2
+
+[node name="close" type="Button" parent="user_interface/quiz_panel/quiz_box/options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_xsrv6")
+text = " Close "
+
+[node name="trivia_panel" type="Panel" parent="user_interface"]
+visible = false
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -253.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jbsfc")
+
+[node name="trivia_box" type="VBoxContainer" parent="user_interface/trivia_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -551.0
+offset_top = -91.0
+offset_right = 551.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="title" type="Label" parent="user_interface/trivia_panel/trivia_box"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l2bgj")
+theme_override_font_sizes/font_size = 32
+text = "Did You Know?"
+
+[node name="trivia_bg" type="Panel" parent="user_interface/trivia_panel/trivia_box"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lmgon")
+
+[node name="trivia_text" type="Label" parent="user_interface/trivia_panel/trivia_box/trivia_bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_l2bgj")
+theme_override_font_sizes/font_size = 32
+text = "Teodora Alonso was Jose Rizal’s first teacher."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="options" type="HBoxContainer" parent="user_interface/trivia_panel/trivia_box"]
+layout_mode = 2
+theme = ExtResource("2_y1h3b")
+alignment = 2
+
+[node name="next" type="Button" parent="user_interface/trivia_panel/trivia_box/options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = " Next "
+
+[node name="close" type="Button" parent="user_interface/trivia_panel/trivia_box/options"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 32
 theme_override_styles/normal = SubResource("StyleBoxFlat_xsrv6")

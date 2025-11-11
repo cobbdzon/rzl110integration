@@ -6,6 +6,7 @@ extends CharacterController;
 var randomMoveTime: float = randi_range(2, 3);
 var randomAngle: float = randi_range(0, 360);
 
+var canBeInteracted: bool = false;
 var hasHinted: bool = false;
 var isTalking: bool = false;
 
@@ -48,6 +49,7 @@ func _quest_update(rizal: CharacterController):
 		data.canMove = true;
 		HintsController.make_hint("Hint: Go outside through the door", 3, false);
 	elif rizal.data.questState == 2:
+		PlayerController.currentScene.can_exit = false;
 		var dialog_array: Array[Array] = [
 			[data.displayName, "Nice work, Pepe. Usman enjoyed that.", 1],
 			[rizal.data.displayName, "He really likes running after the stick, Mother.", 1],
@@ -58,24 +60,44 @@ func _quest_update(rizal: CharacterController):
 		await DialogController.start_dialog(dialog_array);
 		rizal.data.questState = 3;
 		data.canMove = true;
-		HintsController.make_hint("Quest Complete: A Mother’s Lesson", 3, true);
+		HintsController.make_hint("Quest Completed: A Mother’s Lesson", 3, true);
 		await HintsController.hint_completed;
+		
+		canBeInteracted = false;
+		
+		var trivia_title: String = "Did You Know?";
+		var trivia_array: Array[Array] = [
+			[trivia_title, "Teodora Alonso was Jose Rizal’s first teacher.", 0.2],
+			[trivia_title, "She taught him reading, writing, and good manners.", 0.2],
+			[trivia_title, "She also taught him to stay kind and disciplined, even during playtime!", 0.2],
+		]
+		await TriviaController.start_trivia(trivia_array);
+		
+		await get_tree().create_timer(1).timeout;
+		
+		var quiz_data: QuizData = load("res://quizzes/level1.tres");
+		await QuizController.start_quiz(quiz_data);
+		
 		PlayerController.currentScene.can_exit = true;
+		
 	isTalking = false;
 
 #func _on_body_entered(body):
 	#if body is CharacterController and body.name == "rizal":
 		#_quest_update(body);
 #
-#func _ready() -> void:
-	#detect_area.body_entered.connect(_on_body_entered);
+func _ready() -> void:
+	while not canBeInteracted:
+		canBeInteracted = PlayerController.currentCharacter.data.doneBasicTutorial;
+		await get_tree().process_frame;
 
 func _physics_process(delta: float) -> void:
 	ray.target_position = Vector2.from_angle(randomAngle) * 20;
 	ray.enabled = true;
 	ray.force_raycast_update();
 	
-	if detect_area.get_overlapping_bodies().find(PlayerController.currentCharacter) > 0:
+	$interactable.visible = canBeInteracted;
+	if canBeInteracted and detect_area.get_overlapping_bodies().find(PlayerController.currentCharacter) > 0:
 		$interactable.add_theme_color_override("font_color", Color(255, 255, 0));
 		if not hasHinted:
 			hasHinted = true;

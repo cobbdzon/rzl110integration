@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://ctfw4pq3xydcv"]
 
-[ext_resource type="Script" uid="uid://caqvf758v4dhk" path="res://scenes/main_menu.gd" id="1_ekxnf"]
+[ext_resource type="Script" uid="uid://caqvf758v4dhk" path="res://src/main_menu.gd" id="1_ekxnf"]
 [ext_resource type="FontFile" uid="uid://d2pmkspj3wbdd" path="res://assets/fonts/GrapeSoda.ttf" id="1_l6cm7"]
 [ext_resource type="Theme" uid="uid://dfd230ipt7aub" path="res://assets/themes/button.tres" id="2_bqqt6"]
 
@@ -98,7 +98,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ekxnf")
 
 [node name="Label" type="Label" parent="credits_panel"]

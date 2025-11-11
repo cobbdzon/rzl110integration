@@ -20,3 +20,4 @@ class_name CharacterData
 
 @export var hasStick: bool = false;
 @export var questState: int = 0;
+@export var doneBasicTutorial: bool = false;

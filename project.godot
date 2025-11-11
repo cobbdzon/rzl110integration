@@ -21,6 +21,8 @@ PlayerController="*res://src/player_controller.gd"
 UserInterface="*res://scenes/user_interface.tscn"
 HintsController="*res://src/hints_controller.gd"
 DialogController="*res://src/dialog_controller.gd"
+TriviaController="*res://src/trivia_controller.gd"
+QuizController="*res://src/quiz_controller.gd"
 
 [input]
 

@@ -21,15 +21,15 @@ func _on_body_entered(body: Node):
 			PlayerController.change_character(rizal);
 			rizal.data.canMove = false;
 			returnStickCount += 1;
-			if returnStickCount <= 5:
+			if returnStickCount <= 5 and rizal.data.questState == 1:
 				HintsController.make_hint("Played fetch for " + str(returnStickCount) + "/5 times", 3, true);
 			get_tree().create_timer(0.5).timeout.connect(func():
 				rizal.data.canMove = true;
 				data.hasStick = false;
 				rizal.data.hasStick = true;
-				if returnStickCount == 5:
+				if returnStickCount == 5 and rizal.data.questState == 1:
 					rizal.data.questState = 2;
-					HintsController.make_hint("Quest: Play with Usman completed!", 3, true);
+					HintsController.make_hint("Quest Completed: Play with Usman", 3, true);
 					HintsController.make_hint("Go back inside to continue", 3, false);
 					await HintsController.hint_completed;
 					PlayerController.currentScene.can_enter = true;

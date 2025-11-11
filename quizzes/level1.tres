@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="QuizData" load_steps=2 format=3 uid="uid://baqymyidyue1p"]
+
+[ext_resource type="Script" uid="uid://cs8oi1lxsmicm" path="res://src/quiz_data.gd" id="1_w1x1j"]
+
+[resource]
+script = ExtResource("1_w1x1j")
+quizTitle = "Level #1 Quiz"
+quizQuestion = "What lesson did Teodora want Jose to learn when she asked him to play with Usman?"
+quizAnswer = "Teodora used simple moments to teach moral lessons."
+optionA = "To take care of animals"
+optionB = "To always obey his parents"
+optionC = "To value patience and determination"
+optionD = "To rest instead of studying"
+correctOption = "C"
+metadata/_custom_type_script = "uid://cs8oi1lxsmicm"

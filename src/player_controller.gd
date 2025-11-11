@@ -8,6 +8,7 @@ signal scene_changed(new_scene: Node2D);
 @export var starter_character_name: String = "rizal";
 
 @onready var user_interface = UserInterface.get_node("user_interface");
+@onready var transition_panel: Panel = user_interface.get_node("transition_fade");
 
 var gameStarted: bool = false;
 
@@ -28,7 +29,6 @@ func change_scene_to(scene: String):
 	transitioning = false;
 	currentCharacter.data.canMove = false;
 	
-	var transition_panel: Panel = user_interface.get_node("transition_fade");
 	create_tween().tween_property(transition_panel, "modulate:a", 1, SCENE_CANMOVE_DELAY / 2);
 	
 	await get_tree().create_timer(SCENE_CANMOVE_DELAY / 2).timeout
@@ -91,6 +91,20 @@ func spawn_starter_character() -> void:
 
 	currentCharacter = spawn_character(starter_character_name, Vector2(-15, 6));
 	currentCharacter.data.isPlayer = true
+	
+	HintsController.make_hint("Hint: Use ARROW KEYS to move", 6, true);
+	var hasUsedArrowKeys = false;
+	while not hasUsedArrowKeys:
+		await get_tree().process_frame;
+		hasUsedArrowKeys = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down").length_squared() > 0;
+	
+	HintsController.make_hint("Hint: Use LEFT SHIFT key to sprint", 6, true);
+	var clickedShiftKey = false;
+	while not clickedShiftKey:
+		await get_tree().process_frame;
+		clickedShiftKey = Input.is_action_pressed("Sprint");
+	
+	currentCharacter.data.doneBasicTutorial = true;
 
 func change_character(nextCharacter: CharacterController):
 	var lastCharacter = currentCharacter;
@@ -120,6 +134,8 @@ func _start_game() -> void:
 	spawn_starter_character();
 	currentCamera = currentScene.get_node("%Camera");
 	currentCamera.position = currentCharacter.position;
+	
+	create_tween().tween_property(transition_panel, "modulate:a", 0, SCENE_CANMOVE_DELAY / 2);
 	
 	if currentScene.has_method("_scene_ready"):
 		currentScene._scene_ready();
