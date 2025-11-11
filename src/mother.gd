@@ -20,11 +20,27 @@ func update_anims(delta: float) -> void:
 		elif velocity.x < 0:
 			chosenAnimDir = "left";
 
+func anim_look_at(where: Vector2):
+	if where.y > where.x + diagonalConstant:
+		if where.y > 0:
+			chosenAnimDir = "front";
+		elif where.y < 0:
+			chosenAnimDir = "back";
+	elif where.x + diagonalConstant > where.y:
+		if where.x > 0:
+			chosenAnimDir = "right";
+		elif where.x < 0:
+			chosenAnimDir = "left";
+
 func _quest_update(rizal: CharacterController):
 	if isTalking:
 		return
 	isTalking = true;
 	data.canMove = false;
+	
+	var to_rizal = (rizal.global_position - global_position).normalized();
+	anim_look_at(to_rizal);
+	
 	if rizal.data.questState == 0:
 		var dialog_array: Array[Array] = [
 			[data.displayName, "Pepe, you’ve been reading all morning.", 1],
@@ -77,6 +93,8 @@ func _quest_update(rizal: CharacterController):
 		
 		var quiz_data: QuizData = load("res://quizzes/level1.tres");
 		await QuizController.start_quiz(quiz_data);
+		
+		HintsController.make_hint("You have completed Level #1", 3, true);
 		
 		PlayerController.currentScene.can_exit = true;
 		

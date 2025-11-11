@@ -13,15 +13,19 @@ extends Node;
 
 var quiz_answered: bool = false;
 
-func check_if_right(quiz_data: QuizData, quiz_button: Button, letter: String):
+var letters: Array[String] = ["A", "B", "C", "D"];
+
+func check_if_right(quiz_data: QuizData):
 	if quiz_answered:
 		return
 	
-	quiz_button.release_focus();
-	if letter == quiz_data.correctOption:
-		quiz_button.add_theme_color_override("font_color", Color(0.0, 0.392, 0.0, 1.0));
-	else:
-		quiz_button.add_theme_color_override("font_color", Color(122.958, 0.0, 0.0, 1.0));
+	for letter in letters:
+		var quiz_button: Button = quiz_options_box.get_node(letter);
+		quiz_button.release_focus();
+		if letter == quiz_data.correctOption:
+			quiz_button.add_theme_color_override("font_color", Color(0.0, 0.392, 0.0, 1.0));
+		else:
+			quiz_button.add_theme_color_override("font_color", Color(122.958, 0.0, 0.0, 1.0));
 	
 	quiz_question.visible = false;
 	quiz_answer.visible = true;
@@ -46,12 +50,11 @@ func start_quiz(quiz_data: QuizData):
 	quiz_question.visible = true;
 	quiz_answer.visible = false;
 	
-	var letters = ["A", "B", "C", "D"];
 	for letter in letters:
 		var quiz_button: Button = quiz_options_box.get_node(letter);
 		quiz_button.text = letter + ". " + quiz_data.get("option" + letter);
 		quiz_button.pressed.connect(func():
-			check_if_right(quiz_data, quiz_button, letter);
+			check_if_right(quiz_data);
 		);
 	
 	while not quiz_answered:
