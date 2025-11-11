@@ -1,14 +1,14 @@
 extends Node2D;
 
 @export var HOUSE_EXIT: Area2D;
+@export var can_exit: bool = false;
 
 func enter_transition_point(body: Node2D):
-	if body == PlayerController.currentCharacter and PlayerController.currentCharacter.name == "rizal":
+	if can_exit and body == PlayerController.currentCharacter and PlayerController.currentCharacter.name == "rizal":
 		PlayerController.nextScene = "outside"
 		PlayerController.wishTransitionScene = true;
 
 func spawn_if_not_exist(charName: String, pos: Vector2):
-	
 	if not has_node(charName):
 		PlayerController.spawn_character(charName, pos);
 

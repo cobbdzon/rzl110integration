@@ -1,6 +1,8 @@
 extends Resource
 class_name CharacterData
 
+@export var displayName: String;
+
 @export var isPlayer: bool = false;
 @export var canMove: bool = true;
 @export var cantMoveTime: float = 0;
@@ -17,3 +19,4 @@ class_name CharacterData
 @export var transitioningScene: bool = false;
 
 @export var hasStick: bool = false;
+@export var questState: int = 0;

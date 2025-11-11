@@ -1,10 +1,26 @@
-[gd_scene load_steps=3 format=3 uid="uid://beh111myjqse3"]
+[gd_scene load_steps=8 format=3 uid="uid://beh111myjqse3"]
+
+[ext_resource type="FontFile" uid="uid://d2pmkspj3wbdd" path="res://assets/fonts/GrapeSoda.ttf" id="1_l2bgj"]
+[ext_resource type="Theme" uid="uid://dfd230ipt7aub" path="res://assets/themes/button.tres" id="2_y1h3b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_og1tf"]
 bg_color = Color(0, 0, 0, 1)
 
 [sub_resource type="Theme" id="Theme_kxhmu"]
 Panel/styles/panel = SubResource("StyleBoxFlat_og1tf")
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jbsfc"]
+bg_color = Color(0.03137255, 0.03137255, 0.03137255, 0.78431374)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lmgon"]
+bg_color = Color(0.039215688, 0.039215688, 0.039215688, 0.78431374)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xsrv6"]
+bg_color = Color(0.48775613, 7.0391224e-07, 4.813075e-08, 1)
+corner_radius_top_left = 16
+corner_radius_top_right = 16
+corner_radius_bottom_right = 16
+corner_radius_bottom_left = 16
 
 [node name="UI" type="CanvasLayer"]
 
@@ -29,3 +45,93 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+
+[node name="dialog_panel" type="Panel" parent="user_interface"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -253.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jbsfc")
+
+[node name="dialog_box" type="VBoxContainer" parent="user_interface/dialog_panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -551.0
+offset_top = -91.0
+offset_right = 551.0
+offset_bottom = 91.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 16
+
+[node name="speaker" type="Label" parent="user_interface/dialog_panel/dialog_box"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_l2bgj")
+theme_override_font_sizes/font_size = 32
+text = "Speaker Name"
+
+[node name="dialog_bg" type="Panel" parent="user_interface/dialog_panel/dialog_box"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_lmgon")
+
+[node name="dialog_text" type="Label" parent="user_interface/dialog_panel/dialog_box/dialog_bg"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_l2bgj")
+theme_override_font_sizes/font_size = 32
+text = "Dialog text..."
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="options" type="HBoxContainer" parent="user_interface/dialog_panel/dialog_box"]
+layout_mode = 2
+theme = ExtResource("2_y1h3b")
+alignment = 2
+
+[node name="next" type="Button" parent="user_interface/dialog_panel/dialog_box/options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+text = " Next "
+
+[node name="close" type="Button" parent="user_interface/dialog_panel/dialog_box/options"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 32
+theme_override_styles/normal = SubResource("StyleBoxFlat_xsrv6")
+text = " Close "
+
+[node name="hint" type="Label" parent="user_interface"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.0
+offset_top = -229.5
+offset_right = 91.0
+offset_bottom = -206.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 4
+theme_override_constants/shadow_offset_y = 4
+theme_override_constants/shadow_outline_size = 4
+theme_override_fonts/font = ExtResource("1_l2bgj")
+theme_override_font_sizes/font_size = 32
+text = "Hint: Press E to Interact"
+horizontal_alignment = 1
+vertical_alignment = 1

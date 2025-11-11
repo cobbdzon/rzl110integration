@@ -7,10 +7,11 @@ signal scene_changed(new_scene: Node2D);
 
 @export var starter_character_name: String = "rizal";
 
+@onready var user_interface = UserInterface.get_node("user_interface");
+
 var gameStarted: bool = false;
 
 var currentScene: Node2D;
-var user_interface: Control;
 var currentCharacter: CharacterController;
 var currentCamera: Camera2D;
 
@@ -56,7 +57,6 @@ func change_scene_to(scene: String):
 		var data: CharacterData = characterSnapshots[charName];
 		if data.lastScene == scene and not data.isPlayer:
 			var character_scene = load("res://characters/" + charName + ".tscn");
-			print(charName);
 			if character_scene:
 				var character: CharacterController = character_scene.instantiate();
 				character.data = data;
@@ -64,7 +64,6 @@ func change_scene_to(scene: String):
 				currentScene.add_child(character);
 	
 	if currentCharacter:
-		print(user_interface.name);
 		currentScene.add_child(currentCharacter);
 		#currentCharacter.global_position = characterSnapshots[currentCharacter.name].scenePosition;
 		get_tree().create_timer(SCENE_CANMOVE_DELAY).timeout.connect(func ():
@@ -91,7 +90,6 @@ func spawn_starter_character() -> void:
 		return
 
 	currentCharacter = spawn_character(starter_character_name, Vector2(-15, 6));
-	print("spawned " + starter_character_name);
 	currentCharacter.data.isPlayer = true
 
 func change_character(nextCharacter: CharacterController):
@@ -118,7 +116,6 @@ func _start_game() -> void:
 	gameStarted = true
 	
 	currentScene = get_tree().current_scene;
-	user_interface = currentScene.get_node("/root/UserInterface").get_node("user_interface");
 	
 	spawn_starter_character();
 	currentCamera = currentScene.get_node("%Camera");

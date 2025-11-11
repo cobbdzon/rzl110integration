@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_sxwiy")
+displayName = "Teodora Alonso"
 CHAR_ACCEL = 1000
 CHAR_SPEED = 10
 CHAR_SPRINT_SPEED = 20

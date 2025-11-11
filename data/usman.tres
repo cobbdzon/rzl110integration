@@ -4,6 +4,7 @@
 
 [resource]
 script = ExtResource("1_lay5a")
+displayName = "Usman"
 CHAR_ACCEL = 500
 CHAR_SPEED = 60
 CHAR_SPRINT_SPEED = 120

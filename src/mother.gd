@@ -6,6 +6,9 @@ extends CharacterController;
 var randomMoveTime: float = randi_range(2, 3);
 var randomAngle: float = randi_range(0, 360);
 
+var hasHinted: bool = false;
+var isTalking: bool = false;
+
 func update_anims(delta: float) -> void:
 	super.update_anims(delta);
 	var currentVelocityLength = velocity.length();
@@ -16,25 +19,76 @@ func update_anims(delta: float) -> void:
 		elif velocity.x < 0:
 			chosenAnimDir = "left";
 
-func _on_body_entered(body):
-	if body is CharacterController and body.name == "rizal":
-		#var rizal: CharacterController = get_tree().current_scene.get_node("rizal");
-		print("farted")
+func _quest_update(rizal: CharacterController):
+	if isTalking:
+		return
+	isTalking = true;
+	data.canMove = false;
+	if rizal.data.questState == 0:
+		var dialog_array: Array[Array] = [
+			[data.displayName, "Pepe, you’ve been reading all morning.", 1],
+			[rizal.data.displayName, "I just want to learn more, Mother.", 1],
+			[data.displayName, "Learning is good, but you also need rest.", 1],
+			[data.displayName, "Go outside and play with Usman.", 1],
+			[data.displayName, "Fresh air will help your mind.", 1],
+		]
+		await DialogController.start_dialog(dialog_array);
+		rizal.data.questState = 1;
+		rizal.data.cantMoveTime += 3;
+		data.canMove = true;
+		HintsController.make_hint("New Quest: Play with Usman in the backyard!", 3, true);
+		HintsController.make_hint("Hint: Go outside through the door", 3, false);
+		await HintsController.hint_completed;
+		PlayerController.currentScene.can_exit = true;
+	elif rizal.data.questState == 1:
+		var dialog_array: Array[Array] = [
+			[data.displayName, "Pepe, I told you to play with Usman!", 1],
+		]
+		await DialogController.start_dialog(dialog_array);
+		data.canMove = true;
+		HintsController.make_hint("Hint: Go outside through the door", 3, false);
+	elif rizal.data.questState == 2:
+		var dialog_array: Array[Array] = [
+			[data.displayName, "Nice work, Pepe. Usman enjoyed that.", 1],
+			[rizal.data.displayName, "He really likes running after the stick, Mother.", 1],
+			[data.displayName, "He does. He’s patient and doesn’t give up easily.", 1],
+			[data.displayName, "Try to be like that too — steady and determined.", 1],
+			[rizal.data.displayName, "I understand, Mother.", 1],
+		]
+		await DialogController.start_dialog(dialog_array);
+		rizal.data.questState = 3;
+		data.canMove = true;
+		HintsController.make_hint("Quest Complete: A Mother’s Lesson", 3, true);
+		await HintsController.hint_completed;
+		PlayerController.currentScene.can_exit = true;
+	isTalking = false;
 
-
-func _ready() -> void:
-	detect_area.body_entered.connect(_on_body_entered);
+#func _on_body_entered(body):
+	#if body is CharacterController and body.name == "rizal":
+		#_quest_update(body);
+#
+#func _ready() -> void:
+	#detect_area.body_entered.connect(_on_body_entered);
 
 func _physics_process(delta: float) -> void:
 	ray.target_position = Vector2.from_angle(randomAngle) * 20;
 	ray.enabled = true;
 	ray.force_raycast_update();
 	
+	if detect_area.get_overlapping_bodies().find(PlayerController.currentCharacter) > 0:
+		$interactable.add_theme_color_override("font_color", Color(255, 255, 0));
+		if not hasHinted:
+			hasHinted = true;
+			HintsController.make_hint("Hint: Press E to interact", 4, true);
+		if Input.is_action_just_pressed("Interact"):
+			_quest_update(PlayerController.currentCharacter);
+	else:
+		$interactable.add_theme_color_override("font_color", Color(255, 0, 0));
+	
 	if not ray.is_colliding() and randomMoveTime > 0:
 		data.wishDirection = Vector2.from_angle(randomAngle);
 		randomMoveTime = clamp(randomMoveTime - delta, 0, INF);
 	else:
-		print("change direction");
 		randomMoveTime = randi_range(3, 6);
 		
 		if ray.get_collider():

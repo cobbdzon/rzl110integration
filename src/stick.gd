@@ -1,4 +1,4 @@
-extends RigidBody2D;
+class_name Stick extends RigidBody2D;
 
 @export var throw_force: float = 200;
 @export var friction: float = 2;
